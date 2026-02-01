@@ -1,3 +1,5 @@
+import LeadDemo from "../components/LeadDemo";
+
 type FaqItem = {
   q: string;
   a: string;
@@ -156,8 +158,8 @@ function Step({
 }
 
 export default function Home() {
-  const calendlyUrl = "https://cal.com/your-handle/15min";
-  const email = "hello@example.com";
+  const calendlyUrl = "#"; // TODO: replace with your Cal.com link
+  const email = "hello@example.com"; // TODO: replace with your real email
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-zinc-50 text-zinc-950 antialiased dark:bg-[#05070d] dark:text-white">
@@ -217,7 +219,7 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Button href={calendlyUrl}>Book a free 15-min call</Button>
+                <Button href={calendlyUrl}>Get a free Loom audit</Button>
                 <Button href={`mailto:${email}`} variant="secondary">
                   Email me
                 </Button>
@@ -306,6 +308,18 @@ export default function Home() {
               desc="Fast, consistent answers and a clean handoff to your team when needed."
               icon={<span>🤝</span>}
             />
+          </div>
+        </section>
+
+        {/* Interactive proof */}
+        <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+          <SectionHeading
+            eyebrow="Interactive proof"
+            title="Make your website the demo."
+            desc="If a prospect can experience the automation on your site, it sells itself. Try the widgets below—they mirror what we install for clients." 
+          />
+          <div className="mt-8">
+            <LeadDemo />
           </div>
         </section>
 
