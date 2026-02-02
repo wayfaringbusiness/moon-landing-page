@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 
-type Tab = "demo" | "calculator" | "audit";
+type Tab = "demo" | "plan";
+
+type Service = "landscaping" | "plumbing" | "roofing" | "general";
 
 type DemoEvent = {
   t: string;
@@ -22,6 +24,10 @@ function formatUsd(n: number) {
 function clampNumber(v: number, min: number, max: number) {
   if (!Number.isFinite(v)) return min;
   return Math.max(min, Math.min(max, v));
+}
+
+function classNames(...xs: Array<string | false | null | undefined>) {
+  return xs.filter(Boolean).join(" ");
 }
 
 function Card({
@@ -63,12 +69,12 @@ function Pill({
     <button
       type="button"
       onClick={onClick}
-      className={[
+      className={classNames(
         "inline-flex items-center rounded-full px-3 py-1.5 text-xs font-semibold transition",
         active
           ? "bg-zinc-950 text-white dark:bg-white dark:text-zinc-950"
           : "border border-zinc-200 bg-white/70 text-zinc-700 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:bg-white/10",
-      ].join(" ")}
+      )}
     >
       {children}
     </button>
@@ -100,54 +106,80 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+function Select({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: Array<{ value: string; label: string }>;
+}) {
+  return (
+    <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
+      {label}
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+      >
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 export default function LeadDemo() {
   const [tab, setTab] = useState<Tab>("demo");
 
   // Demo tab state
-  const [service, setService] = useState<"landscaping" | "plumbing" | "roofing">(
-    "landscaping",
-  );
+  const [service, setService] = useState<Service>("landscaping");
   const [afterHours, setAfterHours] = useState(true);
   const [simulated, setSimulated] = useState(false);
 
-  // Calculator tab state
+  // Plan tab state
+  const [bizType, setBizType] = useState<Service>("landscaping");
+  const [leadSource, setLeadSource] = useState<
+    "google" | "facebook" | "referrals" | "mix"
+  >("google");
+  const [biggestLeak, setBiggestLeak] = useState<
+    "missed-calls" | "slow-replies" | "no-followup" | "messy-intake"
+  >("missed-calls");
+  const [handoffTo, setHandoffTo] = useState<"text" | "email" | "crm">("text");
   const [monthlyLeads, setMonthlyLeads] = useState(30);
-  const [missedPct, setMissedPct] = useState(25);
-  const [closeRatePct, setCloseRatePct] = useState(25);
   const [avgJobValue, setAvgJobValue] = useState(1200);
 
-  // Audit tab state
-  const [bizName, setBizName] = useState("Your Business");
-  const [bizWebsite, setBizWebsite] = useState("https://example.com");
-  const [bizCity, setBizCity] = useState("Minneapolis");
-  const [bizEmail, setBizEmail] = useState("you@company.com");
-  const [auditGoal, setAuditGoal] = useState(
-    "Get more estimate requests without more ad spend",
-  );
+  const serviceLabel = useMemo(() => {
+    switch (service) {
+      case "landscaping":
+        return "landscaping";
+      case "plumbing":
+        return "plumbing";
+      case "roofing":
+        return "roofing";
+      default:
+        return "home services";
+    }
+  }, [service]);
 
   const demoCopy = useMemo(() => {
-    const serviceLabel =
-      service === "landscaping"
-        ? "landscaping"
-        : service === "plumbing"
-          ? "plumbing"
-          : "roofing";
-
     const intro = afterHours
       ? "Missed call after hours"
       : "Missed call during business hours";
 
     const sms1 = `Hey — sorry we missed your call. Want a quick ${serviceLabel} estimate? Reply 1=YES, 2=NO`;
     const sms2 = "Great — what’s your address and what kind of job is it?";
-    const sms3 = "Thanks. Upload a photo if you can. We’ll text you a time window for a quote.";
+    const sms3 =
+      "Thanks. Upload a photo if you can. We’ll text you a time window for a quote.";
 
-    return {
-      intro,
-      sms1,
-      sms2,
-      sms3,
-    };
-  }, [service, afterHours]);
+    return { intro, sms1, sms2, sms3 };
+  }, [afterHours, serviceLabel]);
 
   const demoEvents = useMemo<DemoEvent[]>(() => {
     if (!simulated) return [];
@@ -166,7 +198,7 @@ export default function LeadDemo() {
       {
         t: "00:10",
         label: "Owner notified",
-        detail: "You get a clean summary (text/email/Slack).",
+        detail: "You get a clean summary in the channel you prefer.",
       },
       {
         t: "00:12",
@@ -175,85 +207,121 @@ export default function LeadDemo() {
       },
       {
         t: "00:15",
-        label: "CRM updated",
-        detail: "Lead is logged so nothing falls through the cracks.",
+        label: "Logged",
+        detail: "The lead is stored so nothing falls through the cracks.",
       },
     ];
   }, [simulated]);
 
-  const calc = useMemo(() => {
+  const plan = useMemo(() => {
     const leads = clampNumber(monthlyLeads, 0, 10000);
-    const missed = clampNumber(missedPct, 0, 100) / 100;
-    const close = clampNumber(closeRatePct, 0, 100) / 100;
     const value = clampNumber(avgJobValue, 0, 1_000_000);
 
-    const missedLeads = leads * missed;
-    const recoveredJobs = missedLeads * close;
-    const recoveredRevenue = recoveredJobs * value;
+    // Simple heuristics; not trying to be “smart”, just clear.
+    const recoveryPct = biggestLeak === "missed-calls" ? 0.2 : 0.12;
+    const closeRate = 0.25;
+
+    const recoveredRevenue = leads * recoveryPct * closeRate * value;
+
+    const bizLabel =
+      bizType === "landscaping"
+        ? "Landscaping"
+        : bizType === "plumbing"
+          ? "Plumbing"
+          : bizType === "roofing"
+            ? "Roofing"
+            : "Home Services";
+
+    const sourceLabel =
+      leadSource === "google"
+        ? "Google (Maps/Search)"
+        : leadSource === "facebook"
+          ? "Facebook/Instagram"
+          : leadSource === "referrals"
+            ? "Referrals"
+            : "Mixed";
+
+    const leakLabel =
+      biggestLeak === "missed-calls"
+        ? "Missed calls"
+        : biggestLeak === "slow-replies"
+          ? "Slow replies"
+          : biggestLeak === "no-followup"
+            ? "No follow-up"
+            : "Messy intake";
+
+    const handoffLabel =
+      handoffTo === "text" ? "Text" : handoffTo === "email" ? "Email" : "CRM";
+
+    const core =
+      biggestLeak === "missed-calls"
+        ? "Missed-call text-back + estimate intake"
+        : biggestLeak === "slow-replies"
+          ? "Instant web/SMS response + FAQs + intake"
+          : biggestLeak === "no-followup"
+            ? "Follow-up sequence + reminders"
+            : "Short intake form + routing + clean handoff";
+
+    const steps = [
+      "1) Capture: missed call / web form / DM triggers an instant response",
+      "2) Qualify: collect address, job type, timeline, photos (if relevant)",
+      `3) Handoff: notify owner via ${handoffLabel} with a clean summary`,
+      "4) Follow-up: nudges if they don’t respond (no manual chasing)",
+      "5) Log: store lead in a simple pipeline (sheet/CRM) so nothing disappears",
+    ];
+
+    const sms =
+      bizType === "landscaping"
+        ? "Hey — sorry we missed you. Want a landscaping estimate? Reply 1=YES, 2=NO"
+        : bizType === "plumbing"
+          ? "Hey — sorry we missed you. Is this an urgent plumbing issue? Reply 1=urgent, 2=non-urgent"
+          : bizType === "roofing"
+            ? "Hey — sorry we missed you. Is this roof repair or a full replacement? Reply 1=repair, 2=replacement"
+            : "Hey — sorry we missed you. Want a quick estimate? Reply 1=YES, 2=NO";
+
+    const outputText = [
+      `Automation Plan (preview)`,
+      `Business: ${bizLabel}`,
+      `Lead source: ${sourceLabel}`,
+      `Biggest leak: ${leakLabel}`,
+      "",
+      `Recommended build: ${core}`,
+      "",
+      "What we install:",
+      ...steps.map((s) => `- ${s}`),
+      "",
+      "Example auto-text:",
+      sms,
+      "",
+      "Next step:",
+      "Reply with your website + service area and we’ll record a free Loom audit.",
+    ].join("\n");
 
     return {
-      missedLeads,
-      recoveredJobs,
+      bizLabel,
+      sourceLabel,
+      leakLabel,
+      core,
+      steps,
+      sms,
       recoveredRevenue,
+      outputText,
     };
-  }, [monthlyLeads, missedPct, closeRatePct, avgJobValue]);
-
-  const auditOutput = useMemo(() => {
-    const subject = `Quick Loom teardown for ${bizName}`;
-
-    const body = [
-      `Hey ${bizName} — I’m Sam with Moon Automation.`,
-      "",
-      `I took a quick look at your site (${bizWebsite}) and your Google presence in ${bizCity}.`,
-      "",
-      "Here are 2–3 quick fixes + 1 automation that usually increases booked estimates:",
-      "1) Add a frictionless ‘Request Estimate’ flow on mobile",
-      "2) Instant text-back for missed calls + short intake",
-      "3) Follow-up sequence so leads don’t go cold",
-      "",
-      `Goal: ${auditGoal}.`,
-      "",
-      "If you want, reply YES and I’ll send a 3–5 minute Loom personalized to your business.",
-      "",
-      "— Sam",
-    ].join("\n");
-
-    const checklist = [
-      "Audit checklist (what we look for)",
-      "- Mobile CTA above the fold",
-      "- Click-to-call working",
-      "- Fast estimate form (short)",
-      "- After-hours lead capture",
-      "- Follow-up automation",
-      "- Reviews + trust elements",
-    ].join("\n");
-
-    const mailto = `mailto:${encodeURIComponent(bizEmail)}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-
-    return { subject, body, checklist, mailto };
-  }, [bizName, bizWebsite, bizCity, bizEmail, auditGoal]);
+  }, [bizType, leadSource, biggestLeak, handoffTo, monthlyLeads, avgJobValue]);
 
   return (
     <div className="grid gap-4 lg:grid-cols-12">
       <div className="lg:col-span-5">
         <Card
-          title="Try the automation (interactive demo)"
-          desc="This is what we build for clients. Your site itself becomes the proof."
+          title="Try the automation"
+          desc="Two simple demos. The goal is clarity, not complexity."
         >
           <div className="flex flex-wrap gap-2">
             <Pill active={tab === "demo"} onClick={() => setTab("demo")}>
-              Missed-call demo
+              Missed-call simulator
             </Pill>
-            <Pill
-              active={tab === "calculator"}
-              onClick={() => setTab("calculator")}
-            >
-              ROI calculator
-            </Pill>
-            <Pill active={tab === "audit"} onClick={() => setTab("audit")}>
-              Audit generator
+            <Pill active={tab === "plan"} onClick={() => setTab("plan")}>
+              Build my automation plan
             </Pill>
           </div>
 
@@ -313,173 +381,118 @@ export default function LeadDemo() {
                 </button>
 
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  No backend here yet—just a front-end demo. In real deployments,
-                  this connects to SMS + a CRM + follow-ups.
+                  Front-end demo only. Real deployments connect to SMS + a CRM +
+                  follow-ups.
                 </p>
               </div>
             </div>
           ) : null}
 
-          {tab === "calculator" ? (
+          {tab === "plan" ? (
             <div className="mt-4 grid gap-4">
               <div className="grid gap-3">
-                <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                  Monthly leads
-                  <input
-                    value={monthlyLeads}
-                    onChange={(e) => setMonthlyLeads(Number(e.target.value))}
-                    type="number"
-                    min={0}
-                    className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Select
+                    label="Business type"
+                    value={bizType}
+                    onChange={(v) => setBizType(v as Service)}
+                    options={[
+                      { value: "landscaping", label: "Landscaping" },
+                      { value: "plumbing", label: "Plumbing" },
+                      { value: "roofing", label: "Roofing" },
+                      { value: "general", label: "Other home services" },
+                    ]}
                   />
-                </label>
+
+                  <Select
+                    label="Main lead source"
+                    value={leadSource}
+                    onChange={(v) =>
+                      setLeadSource(v as "google" | "facebook" | "referrals" | "mix")
+                    }
+                    options={[
+                      { value: "google", label: "Google (Maps/Search)" },
+                      { value: "facebook", label: "Facebook/Instagram" },
+                      { value: "referrals", label: "Referrals" },
+                      { value: "mix", label: "Mixed" },
+                    ]}
+                  />
+                </div>
+
+                <Select
+                  label="Biggest leak"
+                  value={biggestLeak}
+                  onChange={(v) =>
+                    setBiggestLeak(
+                      v as "missed-calls" | "slow-replies" | "no-followup" | "messy-intake",
+                    )
+                  }
+                  options={[
+                    { value: "missed-calls", label: "Missed calls" },
+                    { value: "slow-replies", label: "Slow replies" },
+                    { value: "no-followup", label: "No follow-up" },
+                    { value: "messy-intake", label: "Messy intake" },
+                  ]}
+                />
+
+                <Select
+                  label="Preferred handoff"
+                  value={handoffTo}
+                  onChange={(v) => setHandoffTo(v as "text" | "email" | "crm")}
+                  options={[
+                    { value: "text", label: "Text me (fastest)" },
+                    { value: "email", label: "Email me" },
+                    { value: "crm", label: "Log it to a CRM/sheet" },
+                  ]}
+                />
 
                 <div className="grid gap-3 sm:grid-cols-2">
                   <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                    % leads missed
+                    Monthly leads (rough)
                     <input
-                      value={missedPct}
-                      onChange={(e) => setMissedPct(Number(e.target.value))}
+                      value={monthlyLeads}
+                      onChange={(e) => setMonthlyLeads(Number(e.target.value))}
                       type="number"
                       min={0}
-                      max={100}
                       className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
                     />
                   </label>
+
                   <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                    Close rate on recovered leads
+                    Avg job value ($)
                     <input
-                      value={closeRatePct}
-                      onChange={(e) => setCloseRatePct(Number(e.target.value))}
+                      value={avgJobValue}
+                      onChange={(e) => setAvgJobValue(Number(e.target.value))}
                       type="number"
                       min={0}
-                      max={100}
                       className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
                     />
                   </label>
                 </div>
-
-                <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                  Average job value ($)
-                  <input
-                    value={avgJobValue}
-                    onChange={(e) => setAvgJobValue(Number(e.target.value))}
-                    type="number"
-                    min={0}
-                    className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                  />
-                </label>
               </div>
-
-              <div className="rounded-2xl bg-zinc-100 p-4 text-sm text-zinc-800 dark:bg-white/10 dark:text-zinc-200">
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold">Missed leads / month</span>
-                  <span>{calc.missedLeads.toFixed(1)}</span>
-                </div>
-                <div className="mt-2 flex items-center justify-between">
-                  <span className="font-semibold">Recovered jobs / month</span>
-                  <span>{calc.recoveredJobs.toFixed(1)}</span>
-                </div>
-                <div className="mt-2 flex items-center justify-between">
-                  <span className="font-semibold">Recovered revenue / month</span>
-                  <span>{formatUsd(calc.recoveredRevenue)}</span>
-                </div>
-              </div>
-
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                This is conservative. The main win is speed + consistency.
-              </p>
-            </div>
-          ) : null}
-
-          {tab === "audit" ? (
-            <div className="mt-4 grid gap-4">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                  Business name
-                  <input
-                    value={bizName}
-                    onChange={(e) => setBizName(e.target.value)}
-                    className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                  />
-                </label>
-                <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                  City
-                  <input
-                    value={bizCity}
-                    onChange={(e) => setBizCity(e.target.value)}
-                    className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                  />
-                </label>
-              </div>
-
-              <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                Website
-                <input
-                  value={bizWebsite}
-                  onChange={(e) => setBizWebsite(e.target.value)}
-                  className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                />
-              </label>
-
-              <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                Best email to send the Loom to
-                <input
-                  value={bizEmail}
-                  onChange={(e) => setBizEmail(e.target.value)}
-                  className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                />
-              </label>
-
-              <label className="grid gap-1 text-xs font-semibold text-zinc-700 dark:text-zinc-200">
-                What they want (goal)
-                <input
-                  value={auditGoal}
-                  onChange={(e) => setAuditGoal(e.target.value)}
-                  className="rounded-xl border border-zinc-200 bg-white/70 px-3 py-2 text-sm text-zinc-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
-                />
-              </label>
 
               <div className="rounded-2xl border border-zinc-200 bg-white/70 p-4 text-sm text-zinc-800 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
-                      Ready-to-send email
+                      Your plan (copy/paste)
                     </p>
-                    <p className="mt-1 font-semibold">{auditOutput.subject}</p>
+                    <p className="mt-1 font-semibold">{plan.core}</p>
+                    <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                      Estimated upside (conservative): {formatUsd(plan.recoveredRevenue)}/month
+                    </p>
                   </div>
-                  <div className="flex gap-2">
-                    <CopyButton
-                      text={`Subject: ${auditOutput.subject}\n\n${auditOutput.body}`}
-                    />
-                    <a
-                      className="inline-flex items-center justify-center rounded-xl bg-zinc-950 px-3 py-2 text-xs font-semibold text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-                      href={auditOutput.mailto}
-                    >
-                      Open email
-                    </a>
-                  </div>
+                  <CopyButton text={plan.outputText} />
                 </div>
 
                 <pre className="mt-3 whitespace-pre-wrap text-xs leading-5 text-zinc-700 dark:text-zinc-200">
-{auditOutput.body}
-                </pre>
-
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <p className="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
-                    Audit checklist
-                  </p>
-                  <CopyButton text={auditOutput.checklist} />
-                </div>
-                <pre className="mt-2 whitespace-pre-wrap text-xs leading-5 text-zinc-700 dark:text-zinc-200">
-{auditOutput.checklist}
+{plan.outputText}
                 </pre>
               </div>
 
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                This is a “micro automation” on your site: a visitor can play
-                with it and immediately see how you systemize outreach + lead
-                capture.
+                This is designed to feel obvious: pick your situation → get a
+                concrete system.
               </p>
             </div>
           ) : null}
@@ -488,8 +501,8 @@ export default function LeadDemo() {
 
       <div className="lg:col-span-7">
         <Card
-          title="What the client sees (and what happens behind the scenes)"
-          desc="A simple example flow you can show prospects."
+          title="What the customer sees"
+          desc="A simple flow you can show prospects."
         >
           <div className="grid gap-4 lg:grid-cols-2">
             <div className="rounded-3xl border border-zinc-200 bg-white/70 p-4 dark:border-white/10 dark:bg-white/5">
@@ -556,8 +569,8 @@ export default function LeadDemo() {
               <div className="mt-4 rounded-2xl bg-teal-500/10 p-4 text-sm text-teal-900 dark:text-teal-200">
                 <p className="font-semibold">Why this sells</p>
                 <p className="mt-1">
-                  Prospects can *feel* the system working. Your website becomes
-                  the demo.
+                  It turns the pitch into a product: prospects can interact with
+                  the exact system you install.
                 </p>
               </div>
             </div>
