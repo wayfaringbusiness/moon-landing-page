@@ -7,24 +7,24 @@ type FaqItem = {
 
 const faqs: FaqItem[] = [
   {
-    q: "What exactly is an AI agent?",
-    a: "An AI agent is a system that can answer questions, capture lead details, route requests, and trigger automations (like booking, follow-ups, and CRM updates) — tailored to your business.",
+    q: "What do you actually build?",
+    a: "Custom automations that remove manual busywork (quoting, intake, follow-up, scheduling, internal handoffs). Sometimes that includes AI—sometimes it’s just smart workflow automation. The goal is always the same: free up the owner’s time and protect revenue.",
   },
   {
-    q: "How long does it take to build?",
-    a: "Most projects ship in 7–14 days depending on complexity and integrations. Simple website chat + lead capture can be live faster.",
+    q: "Is this just a chat bot?",
+    a: "No. Chat is one interface. The real value is the system behind it: transcription, structured data extraction, routing, CRM updates, quote drafts, and follow-up sequences—built around your actual workflow.",
+  },
+  {
+    q: "How long does it take?",
+    a: "Most MVPs ship in 7–14 days. Complex integrations can take longer. We start with one high-leverage workflow, ship it, then iterate.",
   },
   {
     q: "What does it cost?",
-    a: "Typically a one-time build + an optional monthly support/optimization plan. After a quick discovery call, you’ll get a clear fixed quote.",
+    a: "Typically a one-time build plus optional ongoing support/optimization. After a quick fit check, you’ll get a clear scope + fixed quote.",
   },
   {
-    q: "Do I need technical skills to use it?",
-    a: "No. You’ll get a simple handoff: how to review leads, update content, and monitor conversations. I handle the technical side.",
-  },
-  {
-    q: "What if it’s not a fit for my business?",
-    a: "On the discovery call we’ll map your bottlenecks and decide quickly. If it’s not a fit, I’ll tell you — no hard sell.",
+    q: "What if we’re not a fit?",
+    a: "On the call we’ll map your bottleneck fast. If automation won’t move the needle, I’ll tell you upfront.",
   },
 ];
 
@@ -161,6 +161,9 @@ export default function Home() {
   const calendlyUrl = "#"; // TODO: replace with your Cal.com link
   const email = "hello@example.com"; // TODO: replace with your real email
 
+  // Copy note: this page is intentionally positioned around custom automation,
+  // not generic “AI chatbots”. The demos are examples of custom workflows.
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-zinc-50 text-zinc-950 antialiased dark:bg-[#05070d] dark:text-white">
       {/* Background */}
@@ -205,21 +208,22 @@ export default function Home() {
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <div className="flex flex-wrap items-center gap-2">
-                <Badge>Always-on lead capture</Badge>
-                <Badge>Instant responses</Badge>
-                <Badge>Fewer interruptions</Badge>
+                <Badge>Custom automation</Badge>
+                <Badge>Less busywork</Badge>
+                <Badge>More owner focus</Badge>
               </div>
               <h1 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
-                Turn missed inquiries into booked jobs.
+                Stop doing admin work.
+                <span className="block">Build systems that scale revenue.</span>
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-zinc-600 dark:text-zinc-300 sm:text-base sm:leading-7">
-                Moon Automation builds AI agents that answer FAQs, qualify
-                leads, and book appointments automatically—so your team can stay
-                focused on the work that pays.
+                Moon Automation builds custom automations for small businesses—
+                quoting, intake, follow-up, scheduling, CRM updates—so owners
+                spend less time in the weeds and more time growing revenue.
               </p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Button href={calendlyUrl}>Get a free Loom audit</Button>
+                <Button href={calendlyUrl}>Get a free automation audit</Button>
                 <Button href={`mailto:${email}`} variant="secondary">
                   Email me
                 </Button>
@@ -233,24 +237,27 @@ export default function Home() {
             <div className="lg:col-span-5">
               <div className="rounded-3xl border border-zinc-200/80 bg-white/80 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 sm:p-6">
                 <p className="text-sm font-semibold text-zinc-950 dark:text-white">
-                  Example: how it handles a lead
+                  Example: what a custom automation looks like
                 </p>
                 <div className="mt-4 space-y-3 text-sm text-zinc-700 dark:text-zinc-200">
                   <div className="rounded-2xl bg-zinc-100 p-4 dark:bg-white/10">
-                    <p className="font-medium">Customer:</p>
-                    <p>“Do you serve my area? What’s the pricing?”</p>
+                    <p className="font-medium">Owner (voice note on-site):</p>
+                    <p>
+                      “Front yard: 2 mulch beds, about 30ft by 4ft each… remove
+                      weeds… add black mulch… 3 shrubs to remove… edging.”
+                    </p>
                   </div>
                   <div className="rounded-2xl bg-zinc-950 p-4 text-white dark:bg-white dark:text-zinc-950">
-                    <p className="font-medium">AI Agent:</p>
+                    <p className="font-medium">Automation:</p>
                     <p>
-                      “Yes—here’s our service area and typical pricing. What’s
-                      the best email and address for a precise quote?”
+                      “Drafted scope + line items → created a draft quote in your
+                      CRM → notified you for review.”
                     </p>
                   </div>
                   <div className="rounded-2xl bg-zinc-100 p-4 dark:bg-white/10">
                     <p className="font-medium">Result:</p>
                     <p>
-                      Lead captured → follow-up sent → call booked → CRM updated.
+                      Less manual admin → faster turnaround → more jobs closed.
                     </p>
                   </div>
                 </div>
@@ -263,24 +270,24 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="The problem"
-            title="Small teams lose deals when responses are slow."
-            desc="If inquiries sit for hours, customers move on. If your team keeps context-switching, delivery suffers."
+            title="Owner time gets burned on repetitive, manual work."
+            desc="Quotes, follow-ups, scheduling, CRM updates, internal handoffs—none of it grows revenue, but it still has to happen." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
-              title="Leads go cold"
-              desc="Many leads never convert because the first reply comes too late."
-              icon={<span>⚡</span>}
+              title="Admin eats your day"
+              desc="You end up doing low-leverage tasks between jobs, at night, or on weekends."
+              icon={<span>🧱</span>}
             />
             <Feature
-              title="Repeat questions drain time"
-              desc="Pricing, availability, service area—your team answers the same things all day."
-              icon={<span>🔁</span>}
+              title="Work falls through cracks"
+              desc="Notes get lost, follow-ups are inconsistent, and leads go cold while you’re busy."
+              icon={<span>🕳️</span>}
             />
             <Feature
-              title="Hiring is expensive"
-              desc="You don’t need another headcount—you need a better system."
-              icon={<span>💸</span>}
+              title="The bottleneck is the owner"
+              desc="If everything depends on you, growth slows down—even if demand is there."
+              icon={<span>⛓️</span>}
             />
           </div>
         </section>
@@ -289,24 +296,24 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="The solution"
-            title="An agent tailored to your workflow, not a generic bot."
-            desc="Answer questions, qualify leads, route requests, and trigger the next step—built around how you actually operate."
+            title="Custom automation built around how you already work."
+            desc="We identify where manual effort is leaking time and revenue, then we implement an automation that reliably runs in the background." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
-              title="Always-on lead capture"
-              desc="Instant replies and contact capture so your pipeline keeps moving."
-              icon={<span>🌙</span>}
+              title="Find the bottleneck"
+              desc="We map your workflow and pick the highest-leverage automation to ship first."
+              icon={<span>🧭</span>}
             />
             <Feature
-              title="Hours saved weekly"
-              desc="Automate repetitive Q&A and admin work so you can focus on delivery."
-              icon={<span>⏱️</span>}
+              title="Build the system"
+              desc="Transcription, structured data, routing, follow-up, CRM updates—whatever your process needs."
+              icon={<span>🛠️</span>}
             />
             <Feature
-              title="Better customer experience"
-              desc="Fast, consistent answers and a clean handoff to your team when needed."
-              icon={<span>🤝</span>}
+              title="Ship + iterate"
+              desc="Launch fast, measure, and refine until it’s saving hours and protecting revenue."
+              icon={<span>📈</span>}
             />
           </div>
         </section>
@@ -315,8 +322,8 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="Interactive proof"
-            title="Make your website the demo."
-            desc="If a prospect can experience the automation on your site, it sells itself. Try the widgets below—they mirror what we install for clients." 
+            title="See an automation, not a promise."
+            desc="Below is a simple demo of a real workflow we build for owners. It’s an example—your system will be custom to your business." 
           />
           <div className="mt-8">
             <LeadDemo />
@@ -330,60 +337,62 @@ export default function Home() {
         >
           <SectionHeading
             eyebrow="How it works"
-            title="A simple, three-step rollout."
-            desc="We identify the bottleneck, build the agent, launch fast, then optimize." 
+            title="A simple rollout that actually ships."
+            desc="We pick one workflow, build it end-to-end, launch it, and then iterate." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Step
               n="1"
-              title="Discovery call"
-              desc="We map your lead flow and choose the highest-leverage automation." 
+              title="Automation audit"
+              desc="We identify where manual effort is costing you time and revenue and pick one workflow to automate first." 
             />
             <Step
               n="2"
-              title="Custom build"
-              desc="I build an agent trained on your business context and wired into your tools." 
+              title="Build + integrate"
+              desc="We implement the workflow end-to-end (inputs → logic → CRM/tools → outputs) and keep it simple to run." 
             />
             <Step
               n="3"
-              title="Launch + support"
-              desc="Go live, monitor results, and iterate so it keeps improving." 
+              title="Deploy + iterate"
+              desc="We launch, measure results, and refine until it’s reliably saving hours and protecting revenue." 
             />
           </div>
         </section>
 
-        {/* Case studies */}
+        {/* Proof */}
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="Proof"
-            title="Results you can point to."
-            desc="Replace these with your own wins when you have them." 
+            title="Real work, not a generic bot."
+            desc="This is what custom automation looks like in the real world. (We’ll add specific numbers + testimonials as we collect them.)" 
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-zinc-200/80 bg-white/80 p-5 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
               <p className="text-sm font-semibold text-zinc-950 dark:text-white">
-                Case study #1
+                Voice → draft scope → CRM quote
               </p>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                Cut response time from <b>4 hours</b> to <b>30 seconds</b> and
-                captured after-hours leads with automatic routing.
+                Owner records a quick voice note on-site. The automation converts it
+                into structured line items and drafts a quote inside their CRM—ready
+                to review and send.
               </p>
               <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
-                “We got bookings while we were closed.”
+                “Less admin at night. Faster turnaround.”
               </p>
             </div>
 
             <div className="rounded-2xl border border-zinc-200/80 bg-white/80 p-5 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
               <p className="text-sm font-semibold text-zinc-950 dark:text-white">
-                Case study #2
+                Follow-up + routing that prevents drop-offs
               </p>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                Saved <b>10+ hours/week</b> by answering repetitive questions and
-                automating follow-ups.
+                Missed calls and web inquiries trigger a consistent follow-up flow,
+                route the request to the right place, and log it automatically so
+                nothing falls through the cracks.
               </p>
               <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
-                “It’s like adding an assistant without hiring one.”
+                “We stopped losing leads when we got busy.”
               </p>
             </div>
           </div>
@@ -395,8 +404,8 @@ export default function Home() {
             <div className="lg:col-span-7">
               <SectionHeading
                 eyebrow="About"
-                title="Built by a technical operator, not an agency factory."
-                desc="I’m Sam. I build practical automations and AI systems that reduce busywork and drive revenue. If you want outcomes instead of buzzwords, let’s talk." 
+                title="Built by a technical operator (not an agency factory)."
+                desc="I’m Sam. I build custom automations and AI-assisted workflows that remove busywork and protect revenue. If you want implementation—not buzzwords—let’s talk." 
               />
             </div>
             <div className="lg:col-span-5">
@@ -405,8 +414,8 @@ export default function Home() {
                   What you’ll get
                 </p>
                 <ul className="mt-4 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
-                  <li>• A clear plan for your highest-leverage automation</li>
-                  <li>• A working agent (not a prototype)</li>
+                  <li>• A clear plan for your highest-leverage workflow</li>
+                  <li>• A working automation system (not a prototype)</li>
                   <li>• Simple handoff + optional ongoing optimization</li>
                 </ul>
               </div>
@@ -450,14 +459,14 @@ export default function Home() {
                   Ready to get time back?
                 </p>
                 <h3 className="mt-2 text-xl font-semibold tracking-tight text-zinc-950 dark:text-white sm:text-2xl">
-                  Book a free 15-min call.
+                  Get a free automation audit.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                  We’ll identify the best automation and map next steps.
+                  We’ll identify the highest-leverage workflow to automate and map a clear build plan.
                 </p>
               </div>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-                <Button href={calendlyUrl}>Book your free call</Button>
+                <Button href={calendlyUrl}>Get your free audit</Button>
                 <Button href={`mailto:${email}`} variant="secondary">
                   Email me
                 </Button>
