@@ -173,7 +173,10 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-end px-4 py-4 sm:px-6 sm:py-6">
+      <header className="mx-auto flex w-full max-w-6xl items-center gap-6 px-4 py-4 sm:px-6 sm:py-6">
+        <p className="text-sm font-semibold tracking-wide text-zinc-700 dark:text-zinc-200">
+          Moon Automation
+        </p>
         <div className="hidden items-center gap-3 sm:flex">
           <a
             href="#how-it-works"
@@ -202,7 +205,7 @@ export default function Home() {
             <Badge>More owner focus</Badge>
           </div>
           <div className="relative mt-5 isolate">
-            <div className="pointer-events-none absolute right-[-22%] top-[0.55em] aspect-square w-[240px] z-0 opacity-20 blur-[0.5px] drop-shadow-[0_0_55px_rgba(255,255,255,0.16)] sm:right-[-14%] sm:top-[0.58em] sm:w-[460px]">
+            <div className="pointer-events-none absolute right-[-22%] top-[0.55em] aspect-square w-[240px] z-0 opacity-25 blur-[0.4px] drop-shadow-[0_0_70px_rgba(255,255,255,0.22)] sm:right-[-14%] sm:top-[0.58em] sm:w-[460px]">
               <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
                 <defs>
                   <radialGradient id="moonGlow" cx="50%" cy="50%" r="55%">
