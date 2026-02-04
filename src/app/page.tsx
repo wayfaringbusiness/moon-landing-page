@@ -173,18 +173,7 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 sm:py-6">
-        <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-zinc-950 text-white shadow-sm dark:bg-white dark:text-zinc-950">
-            <span className="text-sm font-bold">🌙</span>
-          </div>
-          <div>
-            <p className="text-sm font-semibold leading-4">Moon Automation</p>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">
-              AI agents for small businesses
-            </p>
-          </div>
-        </div>
+      <header className="mx-auto flex w-full max-w-6xl items-center justify-end px-4 py-4 sm:px-6 sm:py-6">
         <div className="hidden items-center gap-3 sm:flex">
           <a
             href="#how-it-works"
@@ -207,20 +196,45 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 pb-8 pt-8 sm:px-6 sm:pb-14 sm:pt-12">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <div className="flex flex-wrap items-center gap-2">
-                <Badge>Custom automation</Badge>
-                <Badge>Less busywork</Badge>
-                <Badge>More owner focus</Badge>
-              </div>
-              <h1 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
-                Stop doing admin work.
-                <span className="block">Build systems that scale revenue.</span>
-              </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-zinc-600 dark:text-zinc-300 sm:text-base sm:leading-7">
-                Moon Automation builds custom automations for small businesses—
-                quoting, intake, follow-up, scheduling, CRM updates—so owners
-                spend less time in the weeds and more time growing revenue.
-              </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge>Custom automation</Badge>
+            <Badge>Less busywork</Badge>
+            <Badge>More owner focus</Badge>
+          </div>
+          <div className="relative mt-5 isolate">
+            <div className="pointer-events-none absolute right-[-22%] top-[0.55em] aspect-square w-[240px] z-0 opacity-20 blur-[0.5px] drop-shadow-[0_0_55px_rgba(255,255,255,0.16)] sm:right-[-14%] sm:top-[0.58em] sm:w-[460px]">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
+                <defs>
+                  <radialGradient id="moonGlow" cx="50%" cy="50%" r="55%">
+                    <stop offset="0%" stopColor="#e6f2ff" stopOpacity="0.85" />
+                    <stop offset="65%" stopColor="#c8d8ff" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#9fb7ff" stopOpacity="0.2" />
+                  </radialGradient>
+                  <radialGradient id="moonBody" cx="50%" cy="45%" r="60%">
+                    <stop offset="0%" stopColor="#dfe8ff" />
+                    <stop offset="100%" stopColor="#9aa7d1" />
+                  </radialGradient>
+                </defs>
+                <circle cx="100" cy="100" r="94" fill="url(#moonBody)" opacity="0.9" />
+                <circle cx="100" cy="100" r="96" fill="url(#moonGlow)" />
+                <circle cx="68" cy="86" r="14" fill="#b7c3e6" opacity="0.7" />
+                <circle cx="125" cy="120" r="18" fill="#a9b6da" opacity="0.55" />
+                <circle cx="90" cy="135" r="11" fill="#bfc9eb" opacity="0.6" />
+                <circle cx="130" cy="72" r="9" fill="#c8d2f0" opacity="0.6" />
+                <circle cx="155" cy="98" r="6" fill="#c8d2f0" opacity="0.5" />
+              </svg>
+            </div>
+
+            <h1 className="relative z-10 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
+              <span className="headline-line1 block">Stop doing admin work.</span>
+              <span className="block">Build systems that scale revenue.</span>
+            </h1>
+          </div>
+          <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-zinc-600 dark:text-zinc-300 sm:text-base sm:leading-7">
+            Moon Automation builds custom automations for small businesses—
+            quoting, intake, follow-up, scheduling, CRM updates—so owners
+            spend less time in the weeds and more time growing revenue.
+          </p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Button href={calendlyUrl}>Get a free automation audit</Button>
