@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Moon Automation — AI Agents for Small Businesses",
+  title: "Offsite Automations — Automation Systems for Landscaping & Home Services",
   description:
-    "Moon Automation builds AI agents that answer FAQs, qualify leads, and book appointments for small businesses.",
+    "Offsite Automations builds custom automations for landscaping and home service businesses — quoting, intake, follow-up, scheduling, and CRM updates — so owners reclaim time and close more jobs.",
+  // TODO: set to your real production domain once deployed.
   metadataBase: new URL("https://example.com"),
   openGraph: {
-    title: "Moon Automation",
+    title: "Offsite Automations",
     description:
-      "AI agents for small businesses: faster responses, qualified leads, and fewer interruptions.",
+      "Custom automation systems for landscaping & home services: faster quoting, consistent follow-up, and fewer admin hours.",
     type: "website",
   },
 };

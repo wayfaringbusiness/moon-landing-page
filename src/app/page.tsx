@@ -175,7 +175,7 @@ export default function Home() {
       {/* Header */}
       <header className="mx-auto flex w-full max-w-6xl items-center gap-6 px-4 py-4 sm:px-6 sm:py-6">
         <p className="text-sm font-semibold tracking-wide text-zinc-700 dark:text-zinc-200">
-          Moon Automation
+          Offsite Automations
         </p>
         <div className="hidden items-center gap-3 sm:flex">
           <a
@@ -234,9 +234,9 @@ export default function Home() {
             </h1>
           </div>
           <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-zinc-600 dark:text-zinc-300 sm:text-base sm:leading-7">
-            Moon Automation builds custom automations for small businesses—
-            quoting, intake, follow-up, scheduling, CRM updates—so owners
-            spend less time in the weeds and more time growing revenue.
+            Offsite Automations builds custom automations for landscaping and home service businesses—
+            quoting, intake, follow-up, scheduling, and CRM updates—so owners
+            spend less time on admin and more time closing jobs.
           </p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -287,8 +287,8 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="The problem"
-            title="Owner time gets burned on repetitive, manual work."
-            desc="Quotes, follow-ups, scheduling, CRM updates, internal handoffs—none of it grows revenue, but it still has to happen." 
+            title="Landscaping owners get stuck doing admin between jobs."
+            desc="Quotes, follow-ups, scheduling, CRM updates, internal handoffs — it doesn’t grow revenue, but it still has to happen." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
@@ -313,8 +313,8 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="The solution"
-            title="Custom automation built around how you already work."
-            desc="We identify where manual effort is leaking time and revenue, then we implement an automation that reliably runs in the background." 
+            title="Automation systems built for landscaping (and other home services)."
+            desc="We find where your process leaks time and revenue — then we install an automation that runs reliably in the background." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
@@ -422,7 +422,7 @@ export default function Home() {
               <SectionHeading
                 eyebrow="About"
                 title="Built by a technical operator (not an agency factory)."
-                desc="I’m Sam. I build custom automations and AI-assisted workflows that remove busywork and protect revenue. If you want implementation—not buzzwords—let’s talk." 
+                desc="I’m Sam. I build custom automations for landscaping and home service businesses that remove busywork and protect revenue. If you want implementation — not buzzwords — let’s talk." 
               />
             </div>
             <div className="lg:col-span-5">
@@ -496,7 +496,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="mx-auto w-full max-w-6xl px-4 pb-10 sm:px-6">
         <div className="flex flex-col justify-between gap-4 border-t border-zinc-200 pt-6 text-sm text-zinc-600 dark:border-white/10 dark:text-zinc-300 sm:flex-row sm:pt-8">
-          <p>© {new Date().getFullYear()} Moon Automation</p>
+          <p>© {new Date().getFullYear()} Offsite Automations</p>
           <div className="flex gap-4">
             <a href={`mailto:${email}`} className="hover:text-zinc-900 dark:hover:text-white">
               {email}
