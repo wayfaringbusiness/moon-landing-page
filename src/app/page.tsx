@@ -174,7 +174,7 @@ export default function Home() {
 
       {/* Header */}
       <header className="mx-auto flex w-full max-w-6xl items-center gap-6 px-4 py-4 sm:px-6 sm:py-6">
-        <p className="text-sm font-semibold tracking-wide text-zinc-700 dark:text-zinc-200">
+        <p className="text-sm font-extrabold tracking-wide text-zinc-700 dark:text-zinc-200 text-[32px] leading-none sm:text-[44px]">
           Offsite Automations
         </p>
         <div className="hidden items-center gap-3 sm:flex">
