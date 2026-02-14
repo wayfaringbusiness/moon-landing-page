@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Offsite Automations - Automation Systems for Landscaping & Home Services",
+  title: "Offsite Automations | Automation Systems for Landscaping and Home Services",
   description:
-    "Offsite Automations builds custom automations for landscaping and home service businesses - quoting, intake, follow-up, scheduling, and CRM updates - so owners reclaim time and close more jobs.",
+    "Offsite Automations builds custom automations for landscaping and home service businesses. We handle quoting, intake, follow up, scheduling, and CRM updates so owners reclaim time and close more jobs.",
   // TODO: set to your real production domain once deployed.
   metadataBase: new URL("https://example.com"),
   openGraph: {

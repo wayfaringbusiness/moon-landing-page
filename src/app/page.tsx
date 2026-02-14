@@ -12,7 +12,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "Is this just a chat bot?",
-    a: "No. Chat is one interface. The real value is the system behind it: transcription, structured data extraction, routing, CRM updates, quote drafts, and follow-up sequences - built around your actual workflow.",
+    a: "No. Chat is one interface. The real value is the system behind it: transcription, structured data extraction, routing, CRM updates, quote drafts, and follow up sequences. It is built around your actual workflow.",
   },
   {
     q: "How long does it take?",
@@ -234,8 +234,8 @@ export default function Home() {
             </h1>
           </div>
           <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-zinc-600 dark:text-zinc-300 sm:text-base sm:leading-7">
-            Offsite Automations builds custom automations for landscaping and home service businesses -
-            quoting, intake, follow-up, scheduling, and CRM updates - so owners
+            Offsite Automations builds custom automations for landscaping and home service businesses.
+            We handle quoting, intake, follow up, scheduling, and CRM updates so owners
             spend less time on admin and more time closing jobs.
           </p>
 
@@ -288,7 +288,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="The problem"
             title="Landscaping owners get stuck doing admin between jobs."
-            desc="Quotes, follow-ups, scheduling, CRM updates, internal handoffs - it does not grow revenue, but it still has to happen." 
+            desc="Quotes, follow ups, scheduling, CRM updates, and internal handoffs do not grow revenue. They still have to happen." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
@@ -324,7 +324,7 @@ export default function Home() {
             />
             <Feature
               title="Build the system"
-              desc="Transcription, structured data, routing, follow-up, CRM updates - whatever your process needs."
+              desc="Transcription, structured data, routing, follow up, CRM updates, and whatever else your process needs."
               icon={<span>🛠️</span>}
             />
             <Feature
@@ -340,7 +340,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Interactive proof"
             title="See an automation, not a promise."
-            desc="Below is a simple demo of a real workflow we build for owners. It is an example - your system will be custom to your business." 
+            desc="Below is a simple demo of a real workflow we build for owners. It is only an example. Your system will be custom to your business." 
           />
           <div className="mt-8">
             <LeadDemo />
