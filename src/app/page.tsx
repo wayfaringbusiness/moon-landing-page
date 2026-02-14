@@ -8,15 +8,15 @@ type FaqItem = {
 const faqs: FaqItem[] = [
   {
     q: "What do you actually build?",
-    a: "Custom automations that remove manual busywork (quoting, intake, follow-up, scheduling, internal handoffs). Sometimes that includes AI—sometimes it’s just smart workflow automation. The goal is always the same: free up the owner’s time and protect revenue.",
+    a: "Custom automations that remove manual busywork (quoting, intake, follow-up, scheduling, internal handoffs). Sometimes that includes AI, sometimes it is just smart workflow automation. The goal is always the same: free up the owner's time and protect revenue.",
   },
   {
     q: "Is this just a chat bot?",
-    a: "No. Chat is one interface. The real value is the system behind it: transcription, structured data extraction, routing, CRM updates, quote drafts, and follow-up sequences—built around your actual workflow.",
+    a: "No. Chat is one interface. The real value is the system behind it: transcription, structured data extraction, routing, CRM updates, quote drafts, and follow-up sequences - built around your actual workflow.",
   },
   {
     q: "How long does it take?",
-    a: "Most MVPs ship in 7–14 days. Complex integrations can take longer. We start with one high-leverage workflow, ship it, then iterate.",
+    a: "Most MVPs ship in 7-14 days. Complex integrations can take longer. We start with one high-leverage workflow, ship it, then iterate.",
   },
   {
     q: "What does it cost?",
@@ -234,8 +234,8 @@ export default function Home() {
             </h1>
           </div>
           <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-zinc-600 dark:text-zinc-300 sm:text-base sm:leading-7">
-            Offsite Automations builds custom automations for landscaping and home service businesses—
-            quoting, intake, follow-up, scheduling, and CRM updates—so owners
+            Offsite Automations builds custom automations for landscaping and home service businesses -
+            quoting, intake, follow-up, scheduling, and CRM updates - so owners
             spend less time on admin and more time closing jobs.
           </p>
 
@@ -288,7 +288,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="The problem"
             title="Landscaping owners get stuck doing admin between jobs."
-            desc="Quotes, follow-ups, scheduling, CRM updates, internal handoffs — it doesn’t grow revenue, but it still has to happen." 
+            desc="Quotes, follow-ups, scheduling, CRM updates, internal handoffs - it does not grow revenue, but it still has to happen." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
@@ -303,7 +303,7 @@ export default function Home() {
             />
             <Feature
               title="The bottleneck is the owner"
-              desc="If everything depends on you, growth slows down—even if demand is there."
+              desc="If everything depends on you, growth slows down, even if demand is there."
               icon={<span>⛓️</span>}
             />
           </div>
@@ -314,7 +314,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="The solution"
             title="Automation systems built for landscaping (and other home services)."
-            desc="We find where your process leaks time and revenue — then we install an automation that runs reliably in the background." 
+            desc="We find where your process leaks time and revenue, then we install an automation that runs reliably in the background." 
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
@@ -324,7 +324,7 @@ export default function Home() {
             />
             <Feature
               title="Build the system"
-              desc="Transcription, structured data, routing, follow-up, CRM updates—whatever your process needs."
+              desc="Transcription, structured data, routing, follow-up, CRM updates - whatever your process needs."
               icon={<span>🛠️</span>}
             />
             <Feature
@@ -340,7 +340,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Interactive proof"
             title="See an automation, not a promise."
-            desc="Below is a simple demo of a real workflow we build for owners. It’s an example—your system will be custom to your business." 
+            desc="Below is a simple demo of a real workflow we build for owners. It is an example - your system will be custom to your business." 
           />
           <div className="mt-8">
             <LeadDemo />
@@ -391,7 +391,7 @@ export default function Home() {
               </p>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
                 Owner records a quick voice note on-site. The automation converts it
-                into structured line items and drafts a quote inside their CRM—ready
+                into structured line items and drafts a quote inside their CRM, ready
                 to review and send.
               </p>
               <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
@@ -422,7 +422,7 @@ export default function Home() {
               <SectionHeading
                 eyebrow="About"
                 title="Built by a technical operator (not an agency factory)."
-                desc="I’m Sam. I build custom automations for landscaping and home service businesses that remove busywork and protect revenue. If you want implementation — not buzzwords — let’s talk." 
+                desc="I'm Sam. I build custom automations for landscaping and home service businesses that remove busywork and protect revenue. If you want implementation, not buzzwords, let's talk." 
               />
             </div>
             <div className="lg:col-span-5">

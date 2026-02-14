@@ -173,10 +173,10 @@ export default function LeadDemo() {
       ? "Missed call after hours"
       : "Missed call during business hours";
 
-    const sms1 = `Hey — sorry we missed your call. Want a quick ${serviceLabel} estimate? Reply 1=YES, 2=NO`;
-    const sms2 = "Great — what’s your address and what kind of job is it?";
+    const sms1 = `Hey - sorry we missed your call. Want a quick ${serviceLabel} estimate? Reply 1=YES, 2=NO`;
+    const sms2 = "Great - what's your address and what kind of job is it?";
     const sms3 =
-      "Thanks. Upload a photo if you can. We’ll text you a time window for a quote.";
+      "Thanks. Upload a photo if you can. We'll text you a time window for a quote.";
 
     return { intro, sms1, sms2, sms3 };
   }, [afterHours, serviceLabel]);
@@ -272,12 +272,12 @@ export default function LeadDemo() {
 
     const sms =
       bizType === "landscaping"
-        ? "Hey — sorry we missed you. Want a landscaping estimate? Reply 1=YES, 2=NO"
+        ? "Hey - sorry we missed you. Want a landscaping estimate? Reply 1=YES, 2=NO"
         : bizType === "plumbing"
-          ? "Hey — sorry we missed you. Is this an urgent plumbing issue? Reply 1=urgent, 2=non-urgent"
+          ? "Hey - sorry we missed you. Is this an urgent plumbing issue? Reply 1=urgent, 2=non-urgent"
           : bizType === "roofing"
-            ? "Hey — sorry we missed you. Is this roof repair or a full replacement? Reply 1=repair, 2=replacement"
-            : "Hey — sorry we missed you. Want a quick estimate? Reply 1=YES, 2=NO";
+            ? "Hey - sorry we missed you. Is this roof repair or a full replacement? Reply 1=repair, 2=replacement"
+            : "Hey - sorry we missed you. Want a quick estimate? Reply 1=YES, 2=NO";
 
     const outputText = [
       `Automation Plan (preview)`,
@@ -514,7 +514,7 @@ export default function LeadDemo() {
                   <p className="text-xs font-semibold text-zinc-600 dark:text-zinc-300">
                     Customer
                   </p>
-                  <p className="mt-1">“Hey—can I get an estimate?”</p>
+                  <p className="mt-1">"Hey - can I get an estimate?"</p>
                 </div>
 
                 <div className="ml-auto max-w-[90%] rounded-2xl bg-zinc-950 p-4 text-white dark:bg-white dark:text-zinc-950">
