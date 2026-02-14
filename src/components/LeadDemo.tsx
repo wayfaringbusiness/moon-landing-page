@@ -441,8 +441,8 @@ export default function LeadDemo() {
                   onChange={(v) => setHandoffTo(v as "text" | "email" | "crm")}
                   options={[
                     { value: "text", label: "Text me (fastest)" },
-                    { value: "email", label: "Email me" },
-                    { value: "crm", label: "Log it to a CRM/sheet" },
+                    { value: "email", label: "Email" },
+                    { value: "crm", label: "Log it to a CRM or sheet" },
                   ]}
                 />
 

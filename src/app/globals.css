@@ -3,6 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Accent colors */
+  --accentA: rgba(20, 184, 166, 0.22);
+  --accentB: rgba(59, 130, 246, 0.20);
+  --accentC: rgba(168, 85, 247, 0.14);
 }
 
 @theme inline {
@@ -16,13 +21,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #05070d;
     --foreground: #ededed;
+
+    --accentA: rgba(20, 184, 166, 0.28);
+    --accentB: rgba(59, 130, 246, 0.22);
+    --accentC: rgba(168, 85, 247, 0.16);
   }
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(60rem 60rem at 20% 10%, var(--accentA), transparent 60%),
+    radial-gradient(60rem 60rem at 80% 20%, var(--accentB), transparent 55%),
+    radial-gradient(50rem 50rem at 50% 110%, var(--accentC), transparent 58%),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
 }

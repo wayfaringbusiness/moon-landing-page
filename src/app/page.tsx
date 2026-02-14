@@ -159,13 +159,12 @@ function Step({
 
 export default function Home() {
   const calendlyUrl = "#"; // TODO: replace with your Cal.com link
-  const email = "hello@example.com"; // TODO: replace with your real email
 
-  // Copy note: this page is intentionally positioned around custom automation,
-  // not generic “AI chatbots”. The demos are examples of custom workflows.
+  // Copy note: this page is intentionally positioned around custom automation.
+  // It is not generic AI chatbots. The demos are examples of custom workflows.
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-zinc-50 text-zinc-950 antialiased dark:bg-[#05070d] dark:text-white">
+    <div className="min-h-screen overflow-x-hidden bg-transparent text-zinc-950 antialiased dark:bg-transparent dark:text-white">
       {/* Background */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(60rem_60rem_at_20%_10%,rgba(20,184,166,0.18),transparent_60%),radial-gradient(60rem_60rem_at_80%_20%,rgba(59,130,246,0.16),transparent_55%)]" />
@@ -241,9 +240,6 @@ export default function Home() {
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Button href={calendlyUrl}>Get a free automation audit</Button>
-                <Button href={`mailto:${email}`} variant="secondary">
-                  Email me
-                </Button>
               </div>
 
               <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
@@ -484,9 +480,6 @@ export default function Home() {
               </div>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <Button href={calendlyUrl}>Get your free audit</Button>
-                <Button href={`mailto:${email}`} variant="secondary">
-                  Email me
-                </Button>
               </div>
             </div>
           </div>
@@ -498,9 +491,6 @@ export default function Home() {
         <div className="flex flex-col justify-between gap-4 border-t border-zinc-200 pt-6 text-sm text-zinc-600 dark:border-white/10 dark:text-zinc-300 sm:flex-row sm:pt-8">
           <p>© {new Date().getFullYear()} Offsite Automations</p>
           <div className="flex gap-4">
-            <a href={`mailto:${email}`} className="hover:text-zinc-900 dark:hover:text-white">
-              {email}
-            </a>
             <a
               href="#"
               className="hover:text-zinc-900 dark:hover:text-white"
