@@ -165,11 +165,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-transparent text-zinc-950 antialiased dark:bg-transparent dark:text-white">
-      {/* Background */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(60rem_60rem_at_20%_10%,rgba(20,184,166,0.18),transparent_60%),radial-gradient(60rem_60rem_at_80%_20%,rgba(59,130,246,0.16),transparent_55%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-zinc-50 dark:to-[#05070d]" />
-      </div>
+      {/* Background - handled by globals.css, no overlay needed */}
 
       {/* Header */}
       <header className="mx-auto flex w-full max-w-6xl items-center gap-6 px-4 py-4 sm:px-6 sm:py-6">
@@ -195,7 +191,7 @@ export default function Home() {
 
       {/* Hero */}
       <main>
-        <section className="mx-auto max-w-6xl px-4 pb-8 pt-8 sm:px-6 sm:pb-14 sm:pt-12">
+        <section className="mx-auto max-w-6xl px-4 pb-8 pt-2 sm:px-6 sm:pb-14 sm:pt-4">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
