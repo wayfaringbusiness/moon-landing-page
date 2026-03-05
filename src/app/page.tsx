@@ -8,23 +8,23 @@ type FaqItem = {
 const faqs: FaqItem[] = [
   {
     q: "What do you actually build?",
-    a: "Custom automations that remove manual busywork (quoting, intake, follow-up, scheduling, internal handoffs). Sometimes that includes AI, sometimes it is just smart workflow automation. The goal is always the same: free up the owner's time and protect revenue.",
+    a: "A custom post-quote pipeline with stages (Ghosted, Deferred, Warm, Hot, Follow up in X months), scheduled follow ups that roll forward automatically, internal notifications when follow ups are due, and a monthly digest showing which quotes to re-contact and the dollar value.",
   },
   {
-    q: "Is this just a chat bot?",
-    a: "No. Chat is one interface. The real value is the system behind it: transcription, structured data extraction, routing, CRM updates, quote drafts, and follow up sequences. It is built around your actual workflow.",
+    q: "Do I need a specific CRM?",
+    a: "No. This works alongside whatever you use today (Jobber, LMN, Housecall Pro, ServiceTitan, Aspire, or even just spreadsheets). We plug into your existing flow and add the reactivation layer.",
   },
   {
     q: "How long does it take?",
-    a: "Most MVPs ship in 7-14 days. Complex integrations can take longer. We start with one high-leverage workflow, ship it, then iterate.",
+    a: "Most systems are live in 7 to 14 days. We start with your quote stages and follow up schedule, build the pipeline view and notifications, then iterate until it fits your workflow.",
   },
   {
     q: "What does it cost?",
-    a: "Typically a one-time build plus optional ongoing support/optimization. After a quick fit check, you’ll get a clear scope + fixed quote.",
+    a: "Typically a one-time setup fee plus a small monthly for maintenance and support. If the system doesn't pay for itself with one reactivated job, it's not worth doing. You'll get a clear number after a quick fit check.",
   },
   {
-    q: "What if we’re not a fit?",
-    a: "On the call we’ll map your bottleneck fast. If automation won’t move the needle, I’ll tell you upfront.",
+    q: "What if we're not a fit?",
+    a: "On the call we'll map your current quote flow fast. If you don't have enough quote volume or already have a solid reactivation process, I'll tell you upfront.",
   },
 ];
 
@@ -199,9 +199,9 @@ export default function Home() {
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge>Custom automation</Badge>
-            <Badge>Less busywork</Badge>
-            <Badge>More owner focus</Badge>
+            <Badge>Post-quote pipeline</Badge>
+            <Badge>Automated reactivation</Badge>
+            <Badge>Monthly digest</Badge>
           </div>
           <div className="relative mt-5 isolate">
             <div className="pointer-events-none absolute right-[-22%] top-[0.55em] aspect-square w-[240px] z-0 opacity-25 blur-[0.4px] drop-shadow-[0_0_70px_rgba(255,255,255,0.22)] sm:right-[-14%] sm:top-[0.58em] sm:w-[460px]">
@@ -228,49 +228,48 @@ export default function Home() {
             </div>
 
             <h1 className="relative z-10 text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
-              <span className="headline-line1 block">Stop doing admin work.</span>
-              <span className="block">Build systems that scale revenue.</span>
+              <span className="headline-line1 block">Turn dead quotes into revenue.</span>
+              <span className="block">Automatically.</span>
             </h1>
           </div>
           <p className="mt-4 max-w-2xl text-pretty text-sm leading-6 text-zinc-600 dark:text-zinc-300 sm:text-base sm:leading-7">
-            Offsite Automations builds custom automations for landscaping and home service businesses.
-            We handle quoting, intake, follow up, scheduling, and CRM updates so owners
-            spend less time on admin and more time closing jobs.
+            Offsite Automations builds custom post-quote pipelines for landscaping and home service businesses.
+            We set up real stages (Ghosted, Deferred, Warm, Hot), schedule follow ups that roll forward automatically,
+            and send you a monthly digest showing exactly which past quotes to re-contact and the dollar value.
           </p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <Button href={calendlyUrl}>Get a free automation audit</Button>
+                <Button href={calendlyUrl}>See the pipeline in 10 minutes</Button>
               </div>
 
               <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
-                Clear fit check. If it’s not right, I’ll say so.
+                Quick fit check. If it won't pay for itself, I'll tell you.
               </p>
             </div>
 
             <div className="lg:col-span-5">
               <div className="rounded-3xl border border-zinc-200/80 bg-white/80 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 sm:p-6">
                 <p className="text-sm font-semibold text-zinc-950 dark:text-white">
-                  Example: what a custom automation looks like
+                  Example: how the system works
                 </p>
                 <div className="mt-4 space-y-3 text-sm text-zinc-700 dark:text-zinc-200">
                   <div className="rounded-2xl bg-zinc-100 p-4 dark:bg-white/10">
-                    <p className="font-medium">Owner (voice note on-site):</p>
+                    <p className="font-medium">Quote sent, no response:</p>
                     <p>
-                      “Front yard: 2 mulch beds, about 30ft by 4ft each… remove
-                      weeds… add black mulch… 3 shrubs to remove… edging.”
+                      Prospect ghosts after receiving a $4,200 patio quote.
+                      Normally this dies in your CRM.
                     </p>
                   </div>
                   <div className="rounded-2xl bg-zinc-950 p-4 text-white dark:bg-white dark:text-zinc-950">
-                    <p className="font-medium">Automation:</p>
+                    <p className="font-medium">Your pipeline:</p>
                     <p>
-                      “Drafted scope + line items → created a draft quote in your
-                      CRM → notified you for review.”
+                      Quote moves to "Ghosted" stage → follow ups scheduled at 1 month, 6 months, next season → you get notified when each is due.
                     </p>
                   </div>
                   <div className="rounded-2xl bg-zinc-100 p-4 dark:bg-white/10">
-                    <p className="font-medium">Result:</p>
+                    <p className="font-medium">Monthly digest:</p>
                     <p>
-                      Less manual admin → faster turnaround → more jobs closed.
+                      "12 quotes to re-contact this month. $47,000 in opportunity. Here's the list."
                     </p>
                   </div>
                 </div>
@@ -283,24 +282,24 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="The problem"
-            title="Landscaping owners get stuck doing admin between jobs."
-            desc="Quotes, follow ups, scheduling, CRM updates, and internal handoffs do not grow revenue. They still have to happen." 
+            title="Your quotes are dying after you send them."
+            desc="Most landscaping companies lose revenue not because they can't win jobs, but because quotes get forgotten, prospects ghost, and nobody follows up consistently."
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
-              title="Admin eats your day"
-              desc="You end up doing low-leverage tasks between jobs, at night, or on weekends."
-              icon={<span>🧱</span>}
+              title="No post-quote system"
+              desc="Quotes sit in your CRM until someone remembers to check. By then, the prospect went with someone else."
+              icon={<span>📋</span>}
             />
             <Feature
-              title="Work falls through cracks"
-              desc="Notes get lost, follow-ups are inconsistent, and leads go cold while you’re busy."
-              icon={<span>🕳️</span>}
+              title="Follow up is random"
+              desc="Maybe you call back once. Maybe you forget. There's no consistent 1 month, 6 month, next season cadence."
+              icon={<span>🎲</span>}
             />
             <Feature
-              title="The bottleneck is the owner"
-              desc="If everything depends on you, growth slows down, even if demand is there."
-              icon={<span>⛓️</span>}
+              title="No visibility into lost revenue"
+              desc="You don't know which quotes are worth re-contacting, why they said no, or what the dollar value sitting in 'didn't close' actually is."
+              icon={<span>🔍</span>}
             />
           </div>
         </section>
@@ -309,24 +308,24 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="The solution"
-            title="Automation systems built for landscaping (and other home services)."
-            desc="We find where your process leaks time and revenue, then we install an automation that runs reliably in the background." 
+            title="A custom post-quote pipeline that reactivates dead quotes automatically."
+            desc="We build you real stages, scheduled follow ups, notifications, and a monthly digest so you can predictably close more of the quotes you already sent."
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Feature
-              title="Find the bottleneck"
-              desc="We map your workflow and pick the highest-leverage automation to ship first."
-              icon={<span>🧭</span>}
+              title="Custom pipeline stages"
+              desc="Ghosted, Deferred, Warm, Hot, Follow up in X months. Every quote has a clear status and next step."
+              icon={<span>📊</span>}
             />
             <Feature
-              title="Build the system"
-              desc="Transcription, structured data, routing, follow up, CRM updates, and whatever else your process needs."
-              icon={<span>🛠️</span>}
+              title="Automated follow ups"
+              desc="Schedule follow ups per quote (1 month, 6 months, next season). Due dates roll forward automatically. You or your VA gets notified when it's time."
+              icon={<span>🔔</span>}
             />
             <Feature
-              title="Ship + iterate"
-              desc="Launch fast, measure, and refine until it’s saving hours and protecting revenue."
-              icon={<span>📈</span>}
+              title="Monthly decision digest"
+              desc="A report showing which quotes to re-contact this month, the dollar value, decline reasons, and notes. No manual filtering."
+              icon={<span>📬</span>}
             />
           </div>
         </section>
@@ -335,8 +334,8 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="Interactive proof"
-            title="See an automation, not a promise."
-            desc="Below is a simple demo of a real workflow we build for owners. It is only an example. Your system will be custom to your business." 
+            title="See the pipeline, not a promise."
+            desc="Below is a simple demo of a real workflow we build for owners. Your system will be custom to your quoting process and follow up cadence."
           />
           <div className="mt-8">
             <LeadDemo />
@@ -350,24 +349,24 @@ export default function Home() {
         >
           <SectionHeading
             eyebrow="How it works"
-            title="A simple rollout that actually ships."
-            desc="We pick one workflow, build it end-to-end, launch it, and then iterate." 
+            title="Live in 7 to 14 days."
+            desc="We map your quote flow, build the pipeline and follow up schedule, and get you a working system fast."
           />
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Step
               n="1"
-              title="Automation audit"
-              desc="We identify where manual effort is costing you time and revenue and pick one workflow to automate first." 
+              title="Map your quote flow"
+              desc="We look at how you send quotes, where they live, and what happens after. 10 minute call."
             />
             <Step
               n="2"
-              title="Build + integrate"
-              desc="We implement the workflow end-to-end (inputs → logic → CRM/tools → outputs) and keep it simple to run." 
+              title="Build pipeline + follow ups"
+              desc="We set up custom stages, schedule follow ups per quote, wire up notifications, and build the monthly digest."
             />
             <Step
               n="3"
-              title="Deploy + iterate"
-              desc="We launch, measure results, and refine until it’s reliably saving hours and protecting revenue." 
+              title="Launch + refine"
+              desc="System goes live. We tweak stages, timing, and reporting until it fits your workflow perfectly."
             />
           </div>
         </section>
@@ -376,36 +375,34 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
           <SectionHeading
             eyebrow="Proof"
-            title="Real work, not a generic bot."
-            desc="This is what custom automation looks like in the real world. (We’ll add specific numbers + testimonials as we collect them.)" 
+            title="Real results from quote reactivation."
+            desc="This is what the system looks like in practice. (We'll add specific numbers + testimonials as we collect them.)"
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-zinc-200/80 bg-white/80 p-5 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
               <p className="text-sm font-semibold text-zinc-950 dark:text-white">
-                Voice → draft scope → CRM quote
+                Reactivated a "dead" patio job
               </p>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                Owner records a quick voice note on-site. The automation converts it
-                into structured line items and drafts a quote inside their CRM, ready
-                to review and send.
+                6 month follow up triggered on a ghosted $5,800 patio quote. Owner called,
+                prospect said "actually, we're ready now." Job closed same week.
               </p>
               <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
-                “Less admin at night. Faster turnaround.”
+                "That quote would have been gone forever without the system."
               </p>
             </div>
 
             <div className="rounded-2xl border border-zinc-200/80 bg-white/80 p-5 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
               <p className="text-sm font-semibold text-zinc-950 dark:text-white">
-                Follow-up + routing that prevents drop-offs
+                Monthly digest drives consistent re-engagement
               </p>
               <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                Missed calls and web inquiries trigger a consistent follow-up flow,
-                route the request to the right place, and log it automatically so
-                nothing falls through the cracks.
+                Owner gets a report every month: 15 quotes to call back, $62,000 in total value,
+                sorted by stage and decline reason. No digging through the CRM.
               </p>
               <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
-                “We stopped losing leads when we got busy.”
+                "I actually look forward to that email now."
               </p>
             </div>
           </div>
@@ -418,18 +415,18 @@ export default function Home() {
               <SectionHeading
                 eyebrow="About"
                 title="Built by a technical operator (not an agency factory)."
-                desc="I'm Sam. I build custom automations for landscaping and home service businesses that remove busywork and protect revenue. If you want implementation, not buzzwords, let's talk." 
+                desc="I'm Sam. I build custom post-quote pipelines for landscaping and home service businesses. If you want a system that actually reactivates revenue, not a chatbot demo, let's talk." 
               />
             </div>
             <div className="lg:col-span-5">
               <div className="rounded-3xl border border-zinc-200/80 bg-white/80 p-5 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
                 <p className="text-sm font-semibold text-zinc-950 dark:text-white">
-                  What you’ll get
+                  What you'll get
                 </p>
                 <ul className="mt-4 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
-                  <li>• A clear plan for your highest-leverage workflow</li>
-                  <li>• A working automation system (not a prototype)</li>
-                  <li>• Simple handoff + optional ongoing optimization</li>
+                  <li>• Custom pipeline stages that match your workflow</li>
+                  <li>• Automated follow ups with notifications</li>
+                  <li>• Monthly digest showing quotes to re-contact + $ value</li>
                 </ul>
               </div>
             </div>
@@ -441,7 +438,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="FAQ"
             title="Questions you might be asking."
-            desc="If you’re unsure about fit, the fastest way is a quick call." 
+            desc="If you're unsure about fit, the fastest way is a quick call."
           />
 
           <div className="mx-auto mt-8 max-w-3xl divide-y divide-zinc-200 rounded-2xl border border-zinc-200 bg-white/80 shadow-sm dark:divide-white/10 dark:border-white/10 dark:bg-white/5">
@@ -469,17 +466,17 @@ export default function Home() {
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400">
-                  Ready to get time back?
+                  Ready to reactivate dead quotes?
                 </p>
                 <h3 className="mt-2 text-xl font-semibold tracking-tight text-zinc-950 dark:text-white sm:text-2xl">
-                  Get a free automation audit.
+                  See the pipeline in 10 minutes.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                  We’ll identify the highest-leverage workflow to automate and map a clear build plan.
+                  We'll map your quote flow and show you what the stages, follow ups, and monthly digest look like.
                 </p>
               </div>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-                <Button href={calendlyUrl}>Get your free audit</Button>
+                <Button href={calendlyUrl}>Book a quick demo</Button>
               </div>
             </div>
           </div>
